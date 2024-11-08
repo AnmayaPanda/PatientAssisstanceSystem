@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Medication</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Medication</h1>
+        <form method="POST" action="{{ url_for('edit_medication', id=med.id) }}">
+            <label for="medName">Medication Name:</label>
+            <input type="text" id="medName" name="medName" value="{{ med.medName }}" required><br><br>
+
+            <label for="dosage">Dosage:</label>
+            <input type="text" id="dosage" name="dosage" value="{{ med.dosage }}" required><br><br>
+
+            <label for="time">Time:</label>
+            <input type="text" id="time" name="time" value="{{ med.time }}" required><br><br>
+
+            <label for="interval">Interval (in hours):</label>
+            <input type="number" id="interval" name="interval" value="{{ med.interval }}" required><br><br>
+
+            <label for="notes">Notes:</label>
+            <textarea id="notes" name="notes">{{ med.notes }}</textarea><br><br>
+
+            <button type="submit">Save Changes</button>
+        </form>
+        <a href="{{ url_for('index') }}">Cancel</a>
+    </div>
+</body>
+</html>

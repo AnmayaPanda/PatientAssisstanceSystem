@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Assistant - Medication Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #5cb85c; /* Green color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none; /* Remove underline */
+        }
+
+        .logout-button:hover {
+            background-color: #4cae4c; /* Darker green on hover */
+        }
+
+        .container {
+            position: relative; /* Ensure container positioning is relative */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Medication Tracker</h1>
+        <p>Hello, {{ session['username'] }}!</p>
+        <a href="{{ url_for('logout') }}" class = "logout-button">Logout</a>
+        <a href="{{ url_for('export_medications') }}" class="export-button">Open Medications in Excel</a>
+
+        <!-- Add Medication Form -->
+        <form id="medicationForm">
+            <label for="medName">Medicine Name:</label>
+            <input type="text" id="medName" required>
+
+            <label for="dosage">Dosage (mg):</label>
+            <input type="number" id="dosage" required>
+
+            <label for="time">Time of Medication:</label>
+            <input type="time" id="time" required>
+
+            <label for="interval">Number of Pills dispensed:</label>
+            <input type="number" id="interval" required>
+
+            <label for="notes">Additional Notes:</label>
+            <textarea id="notes" rows="4"></textarea>
+
+            <button type="submit">Add Medication</button>
+        </form>
+
+        <!-- Display Medications -->
+        <h2>Today's Medications</h2>
+        <div id="medicationList"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
